@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0098)http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=discussRenewCourseList -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>南京大学教务系统</title>
+    <!--<base href="http://desktop.nju.edu.cn:8080/jiaowu/">--><base href=".">
+    
+	<link href="./通识课（无效）_files/inner.css" rel="stylesheet" type="text/css">  
+  </head>
+  <!--[if lte IE 6.0000]>
+  	<script language="javascript" src="js/pngfix.js"></script>
+  <![endif]--> 
+  <body>
+ 
+	<div id="Header">
+		
+
+
+
+
+ 
+<div id="Logo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/index.do#"><img src="./通识课（无效）_files/Logo_Student.jpg" border="0"></a></div>
+<div id="TopLink"><img src="./通识课（无效）_files/Icon_Help.gif"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/index.do#">帮助</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="./通识课（无效）_files/Icon_Exit.gif"><a href="http://desktop.nju.edu.cn:8080/jiaowu/exit.do?type=student">退出</a></div>
+<div id="UserInfo">欢迎您：李想&nbsp;&nbsp;&nbsp;&nbsp;当前身份：学生</div>
+		
+<script type="text/javascript" language="javascript" src="./通识课（无效）_files/prototype.js"></script>
+<div id="Nav">
+  <ul>
+    <li id="homepage"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/index.do">首  页</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/studentinfo/index.do">个人信息</a></li>
+    <li id="teachinginfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/teachinginfo/index.do">教学信息</a></li>
+    <li id="teachinginfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/index.do">学期选课</a></li>
+    <li id="teachinginfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/signup/index.do">报名系统</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/dissertation/index.do">论文信息</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/evalcourse/list.do">课程评估</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/exchange/index.do">校际交换</a></li>    	
+  </ul>
+</div>
+	</div>
+	
+
+
+
+
+<link href="./通识课（无效）_files/publicCourse.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+<!--
+	window.onload=function(){		
+		initSelectedList();
+	}
+	
+	function initSelectedList() {
+		
+	}
+	
+	function initList(campus) {
+		window.location.href="http://desktop.nju.edu.cn:8080/jiaowu/"+"student/elective/courseList.do?method=discussRenewCourseList&campus=" + campus;
+	}
+	
+	function campusChange() {
+		var g_campus = document.getElementById('campusList').options[document.getElementById('campusList').selectedIndex].value;
+		initList(g_campus);
+	}
+	
+	function refreshCourseList() {
+		var g_campus = document.getElementById('campusList').options[document.getElementById('campusList').selectedIndex].value;
+		initList(g_campus);
+	}
+	
+	function onSubmitSelect() {
+		var g_campus = document.getElementById('campusList').options[document.getElementById('campusList').selectedIndex].value;
+		var rd = document.getElementsByName("selectedRadio");
+		var classId = 0;
+		for(var i=0;i<rd.length;i++) {
+			if(rd[i].checked) {
+				classId = rd[i].value;
+				break;
+			}
+		}
+		if(classId == 0)
+			alert("请选择课程！");
+		else
+			window.location.href="http://desktop.nju.edu.cn:8080/jiaowu/"+"student/elective/courseList.do?method=submitDiscussRenew&classId=" + classId + "&campus=" + g_campus;
+	}
+	function showCourseDetailInfo(classId, courseNumber){
+		window.open("http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber="+courseNumber+"&classid="+classId);
+	}
+//-->
+</script>
+
+	<p style="font-size: 12px;padding-left: 20px;color: #0000FF;">您的“已修通识学分+本学期已选通识学分”，在同年级学生中属于正常进度，暂时无法参加补选。</p>
+
+
+  
+
+
+
+</body><style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style></html>

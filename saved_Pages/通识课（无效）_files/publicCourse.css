@@ -1,0 +1,59 @@
+@import url("common.css");
+
+#courseList{
+	position:relative;
+	float:left;
+	width:60%;
+	left:20px;
+	top:20px;
+	height:490px;
+	overflow: auto;
+}
+#operation{	
+	top : 2px;
+	float:left;
+	width:60px;
+}
+#courseOperation{
+	position:relative;
+	top:2px;
+	width:100px;
+	left: 40px;
+	height: 10px;
+}
+
+#courseDetail{
+	position:relative;
+	float:left;
+	top:16px;
+	left: 30px;
+	width:30%;
+}
+
+#comment{
+	float:left;
+	left:30px;
+	width:30%;
+}
+
+#tbCourseList{
+	width:95%
+}
+
+#tbCourseList tbody{
+	cursor : default;
+}
+
+#tbCourseListEx{
+	width : 100%;
+	border: 1px solid #000000;
+	line-height:200%;
+}
+
+#tbCourseListEx thead{
+	background-color : #cccccc;
+}
+
+#tbCourseListEx tbody tr{
+
+}

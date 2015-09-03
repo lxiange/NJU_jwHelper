@@ -1,0 +1,24 @@
+@import url("common.css");
+
+
+#operation{	
+	top : 2px;
+	float:left;
+	width:100px;
+}
+#courseOperation{
+	position:relative;
+	top:2px;
+	width:100px;
+	left: 40px;
+	height: 10px;
+}
+
+
+#courseDetail{
+	position:relative;
+	float:left;
+	top:16px;
+	left: 60px;
+	width:50%;
+}

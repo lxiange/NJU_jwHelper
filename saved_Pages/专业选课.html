@@ -1,0 +1,821 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0078)http://desktop.nju.edu.cn:8080/jiaowu/student/elective/specialityCourseList.do -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>南京大学教务系统</title>
+    <!--<base href="http://desktop.nju.edu.cn:8080/jiaowu/">--><base href=".">
+    
+	<link href="./专业选课_files/inner.css" rel="stylesheet" type="text/css">  
+  </head>
+  <!--[if lte IE 6.0000]>
+  	<script language="javascript" src="js/pngfix.js"></script>
+  <![endif]--> 
+  <body>
+ 
+	<div id="Header">
+		
+
+
+
+
+ 
+<div id="Logo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/index.do#"><img src="./专业选课_files/Logo_Student.jpg" border="0"></a></div>
+<div id="TopLink"><img src="./专业选课_files/Icon_Help.gif"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/index.do#">帮助</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="./专业选课_files/Icon_Exit.gif"><a href="http://desktop.nju.edu.cn:8080/jiaowu/exit.do?type=student">退出</a></div>
+<div id="UserInfo">欢迎您：李想&nbsp;&nbsp;&nbsp;&nbsp;当前身份：学生</div>
+		
+<script type="text/javascript" language="javascript" src="./专业选课_files/prototype.js"></script>
+<div id="Nav">
+  <ul>
+    <li id="homepage"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/index.do">首  页</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/studentinfo/index.do">个人信息</a></li>
+    <li id="teachinginfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/teachinginfo/index.do">教学信息</a></li>
+    <li id="teachinginfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/index.do">学期选课</a></li>
+    <li id="teachinginfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/signup/index.do">报名系统</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/dissertation/index.do">论文信息</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/evalcourse/list.do">课程评估</a></li>
+    <li id="studentinfo"><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/exchange/index.do">校际交换</a></li>    	
+  </ul>
+</div>
+	</div>
+	
+
+
+
+
+
+<link href="./专业选课_files/specialityCourse.css" rel="stylesheet" type="text/css">
+<script language="javascript">
+<!--
+	var g_selectedClassId = 0;
+	var g_selectingCourseNumber = '';
+	
+	window.onload=function(){		
+		initClassList();
+	}
+		
+	function initClassList(){
+		var pars = 'method=specialityCourseList';	
+		var myAjax = new Ajax.Updater(
+			'courseList',
+			'/jiaowu/student/elective/courseList.do',
+			{
+				method : 'post',
+				parameters : pars,
+				evalScript : true
+			}
+		);
+	}
+
+	function specialityChange(){
+		g_speciality = $('specialityList').options[$('specialityList').selectedIndex].value;
+		g_grade = $('gradeList').options[$('gradeList').selectedIndex].value;
+		if(!((g_speciality == null) || (g_speciality == ''))){
+			var pars = 'method=specialityCourseList&specialityCode=' + g_speciality 
+						+ '&courseGrade=' + g_grade;
+			var myAjax = new Ajax.Updater(
+				'courseList',
+				'/jiaowu/student/elective/courseList.do',
+				{
+					method : 'post',
+					parameters : pars,
+					evalScript : true,
+					onComplete : hideCourseDetail
+				}
+			);
+		}
+	}
+	
+	function showClassInfo(event, courseNumber, classList, electiveProperty, specialityCode, courseGrade){
+		if(classList == null || classList.length==0){
+			alert("该课程没有班级，或者属于必选课与指选课！");
+			return;
+		}
+		$('courseDetail').style.visibility = "hidden";
+		g_selectedClassId = 0;
+		g_selectingCourseNumber = courseNumber;
+		var pars = 'method=getSpecialityClass&classList=' + classList + '&electiveProperty=' + electiveProperty + '&specialityCode=' + specialityCode +'&courseGrade=' + courseGrade;	
+		var myAjax = new Ajax.Updater(
+			'courseDetail',
+			'/jiaowu/student/elective/classList.do',
+			{
+				method : 'post',
+				parameters : pars,
+				evalScripts: true,
+				onComplete : showCourseDetail
+			}
+		);
+	}
+	
+	function setSelectedClassId(classId){
+		g_selectedClassId = classId;
+	}
+	
+	function selectClass(){
+		if(g_selectedClassId == 0){
+			alert("未做改变!");
+		}else{
+			document.getElementById('sub').disabled = true;
+			var pars = 'method=addSpecialitySelect&classId=' + g_selectedClassId;		
+			var myAjax = new Ajax.Updater(
+				'courseDetail',
+				'/jiaowu/student/elective/selectCourse.do',
+				{
+					method : 'post',
+					parameters : pars,
+					evalScripts: true,
+					onComplete : completeSelected
+				}
+			);
+		}
+	}
+	
+	function completeSelected(response){
+		$('courseOperation').innerHTML = response.responseText;
+		if(document.getElementById('errMsg')!=null){
+			alert(document.getElementById('errMsg').title);
+			return;
+		}
+		
+		if(document.getElementById("tdSelected" + g_selectingCourseNumber) != null){
+			document.getElementById("tdSelected" + g_selectingCourseNumber).innerHTML = "<font color='#000000'>已选</font>";
+		}
+		
+	}
+	
+	function hideCourseDetail(response){
+		$('courseDetail').style.visibility = "hidden";
+	}
+	function showCourseDetail(response){
+		$('courseDetail').style.visibility = "visible";
+	}
+	
+	var handle = {
+		onCreate: function() {
+			$('operation').style.visibility = "visible";
+		},
+		onComplete: function(){
+			if(Ajax.activeRequestCount == 0){
+				$('operation').style.visibility = "hidden";
+			}
+		}
+	}
+	
+	Ajax.Responders.register(handle);
+</script>
+<div id="courseList">
+
+
+<link href="./专业选课_files/specialityCourse.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+选课专业：
+<select style="vertical-align:middle;" id="specialityList" name="specialityList" onchange="javascript:specialityChange()">
+	
+		<option value="220" selected="selected">计算机科学类</option>
+	
+</select>
+年级：
+<select style="vertical-align:middle;" id="gradeList" name="gradeList" onchange="javascript:specialityChange()" disabled="disabled">
+	
+		<option value="2014">2014</option>
+	
+		<option value="2013" selected="selected">2013</option>
+	
+		<option value="2012">2012</option>
+	
+		<option value="2011">2011</option>
+	
+		<option value="2010">2010</option>
+	
+		<option value="2009">2009</option>
+	
+		<option value="2008">2008</option>
+	
+		<option value="2007">2007</option>
+	
+		<option value="2006">2006</option>
+	
+		<option value="2005">2005</option>
+	
+		<option value="2004">2004</option>
+	
+		<option value="2003">2003</option>
+	
+		<option value="2002">2002</option>
+	
+</select>
+
+<br><br>
+
+
+<table id="tbCourseList" bordercolor="#777777" border="1" style="border-color:#777777;border-collapse:collapse">
+	<thead>
+		<tr>
+			<td>课程号</td>
+			<td width="150">课程名</td>
+			<td>学分</td>
+			<td>学时</td>
+			<td>类型</td>
+			<td>性质</td>
+			<td>开课院系</td>
+			<td align="center">选课操作</td>
+		</tr>
+	</thead>
+	<tbody>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=00040010D&classid=0" target="_blank"><u>00040010D</u></a></td>
+			
+			
+			<td width="150">体育（四）</td>
+			<td align="center">1</td>
+			<td align="center">2</td>
+			<td>通修</td>
+			<td>
+				
+					
+						必选
+					
+					
+					
+				
+			</td>
+			<td>公共课程</td>
+			
+				<td id="tdSelected00040010D">已选</td>
+			
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22000090T&classid=0" target="_blank"><u>22000090T</u></a></td>
+			
+			
+			<td width="150">数字电路与数字系统实验</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>平台</td>
+			<td>
+				
+					
+					
+					
+						指选
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22000090T&#39;, 
+											
+											&#39;&#39;, 
+											&#39;03&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22000090T" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22000100&classid=0" target="_blank"><u>22000100</u></a></td>
+			
+			
+			<td width="150">计算机系统基础</td>
+			<td align="center">5</td>
+			<td align="center">5</td>
+			<td>平台</td>
+			<td>
+				
+					
+					
+					
+						指选
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22000100&#39;, 
+											
+											&#39;&#39;, 
+											&#39;03&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22000100" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010020&classid=0" target="_blank"><u>22010020</u></a></td>
+			
+			
+			<td width="150">数据结构</td>
+			<td align="center">4</td>
+			<td align="center">4</td>
+			<td>平台</td>
+			<td>
+				
+					
+					
+					
+						指选
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010020&#39;, 
+											
+											&#39;&#39;, 
+											&#39;03&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010020" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010030&classid=0" target="_blank"><u>22010030</u></a></td>
+			
+			
+			<td width="150">算法设计与分析</td>
+			<td align="center">4</td>
+			<td align="center">4</td>
+			<td>平台</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+				<td id="tdSelected22010030">已选</td>
+			
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010040&classid=0" target="_blank"><u>22010040</u></a></td>
+			
+			
+			<td width="150">操作系统</td>
+			<td align="center">4</td>
+			<td align="center">4</td>
+			<td>平台</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+				<td id="tdSelected22010040">已选</td>
+			
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010050&classid=0" target="_blank"><u>22010050</u></a></td>
+			
+			
+			<td width="150">计算机网络</td>
+			<td align="center">4</td>
+			<td align="center">4</td>
+			<td>平台</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+				<td id="tdSelected22010050">已选</td>
+			
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010100&classid=0" target="_blank"><u>22010100</u></a></td>
+			
+			
+			<td width="150">高级程序设计</td>
+			<td align="center">3</td>
+			<td align="center">3</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+				<td id="tdSelected22010100">已选</td>
+			
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010200&classid=0" target="_blank"><u>22010200</u></a></td>
+			
+			
+			<td width="150">数理逻辑</td>
+			<td align="center">3</td>
+			<td align="center">3</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+				<td id="tdSelected22010200">已选</td>
+			
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010500&classid=0" target="_blank"><u>22010500</u></a></td>
+			
+			
+			<td width="150">计算方法</td>
+			<td align="center">3</td>
+			<td align="center">3</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010500&#39;, 
+											&#39;,62079,62082&#39;
+											, 
+											&#39;04&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010500" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010580&classid=0" target="_blank"><u>22010580</u></a></td>
+			
+			
+			<td width="150">数据通信</td>
+			<td align="center">3</td>
+			<td align="center">3</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010580&#39;, 
+											&#39;,62161,62162&#39;
+											, 
+											&#39;04&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010580" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010700&classid=0" target="_blank"><u>22010700</u></a></td>
+			
+			
+			<td width="150">数字信号处理</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010700&#39;, 
+											&#39;,62085&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010700" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010720&classid=0" target="_blank"><u>22010720</u></a></td>
+			
+			
+			<td width="150">微机原理与接口技术</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010720&#39;, 
+											&#39;,62089&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010720" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010770&classid=0" target="_blank"><u>22010770</u></a></td>
+			
+			
+			<td width="150">电子商务</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010770&#39;, 
+											&#39;,62090&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010770" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010810&classid=0" target="_blank"><u>22010810</u></a></td>
+			
+			
+			<td width="150">图论</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010810&#39;, 
+											&#39;,62091&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010810" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010820&classid=0" target="_blank"><u>22010820</u></a></td>
+			
+			
+			<td width="150">博弈论及其应用</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010820&#39;, 
+											&#39;,62093&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010820" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22010980&classid=0" target="_blank"><u>22010980</u></a></td>
+			
+			
+			<td width="150">软件产业概论</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22010980&#39;, 
+											&#39;,62095&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22010980" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+		<tr class="TABLE_TR_01">
+			
+				<td><a href="http://desktop.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber=22011100&classid=0" target="_blank"><u>22011100</u></a></td>
+			
+			
+			<td width="150">模式识别</td>
+			<td align="center">2</td>
+			<td align="center">2</td>
+			<td>选修</td>
+			<td>
+				
+					
+					
+						可选
+					
+					
+				
+			</td>
+			<td>计算机科学与技术系</td>
+			
+			
+				<td onclick="javascript:showClassInfo(event,&#39;22011100&#39;, 
+											&#39;,62169&#39;
+											, 
+											&#39;02&#39;, 
+											&#39;220&#39;, &#39;2013&#39;)" id="tdSelected22011100" align="center"><a style="color:red;">选择</a></td>
+			
+		</tr>
+		
+	</tbody>		
+</table>
+<div style="padding-left:10px;padding-top: 20px;color: #0000FF;">
+选课说明：<br>1、选课性质中只有“可选”课才需要同学们选择，“必选”课和“指选”由管理人员帮同学们自动选好。不需要同学们去点。<br>
+2、如果课程分多个班级上课，请根据安排选择自己所在班级。<br>
+3、如专业课表与你现在所在专业不符，请与院系教务员老师联系。
+</div></div>
+<div id="courseElective">
+	<div id="operation" style="visibility: hidden;">正在处理中...</div>
+	<div id="courseOperation" style="visibility:hidden"></div>
+	<div id="courseDetail" style="visibility: visible;">
+
+
+
+
+
+
+
+
+
+<b>班级信息</b>
+<br><br>
+
+<div id="classList">
+	<table id="tbClassList" bordercolor="#777777" border="1" style="border-color:#777777;border-collapse:collapse">
+		<thead>
+			<tr>
+				<td align="center">序号</td>
+				<td align="center">班级信息</td>
+				<td align="center">选择</td>
+			</tr>
+		</thead>
+		<tbody>			
+					
+			
+			
+			
+			
+				
+				
+								
+			
+			
+			<tr>
+				<td align="center" valign="top">1</td>
+				<td>
+					<table>
+						<tbody><tr>
+							<td valign="top">课程名称：</td>
+							<td>算法设计与分析</td>
+						</tr>
+						<tr>
+							<td valign="top">上课时间：</td>
+							<td>周一 第5-6节 仙Ⅱ-110&nbsp;1-16周 <br>周四 第1-2节 仙Ⅱ-110&nbsp;1-16周 </td>
+						</tr>
+						<tr>
+							<td valign="top">授课教师：</td>
+							<td>黄宇</td>
+						</tr>
+
+
+
+
+						<tr>
+							<td valign="top">已选人数：</td>
+							<td>69</td>
+						</tr>
+						<tr>
+							<td valign="top">选课备注：</td>
+							<td>数据结构必须通过</td>
+						</tr>
+						
+					</tbody></table>
+				</td>
+				<td align="center" valign="top"><input type="radio" name="chkClass" value="62074" checked="" disabled="" onclick="setSelectedClassId(62074)"></td>					
+			</tr>
+			
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3" align="center"><input id="sub" name="sub" type="button" value="确定" onclick="selectClass()" disabled=""></td>
+			</tr>
+		</tfoot>
+	</table>
+</div></div>
+</div>
+
+
+
+  
+
+
+
+<div class="vimiumReset vimiumHUD" style="right: 150px; opacity: 0; display: none;"></div></body><style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style></html>

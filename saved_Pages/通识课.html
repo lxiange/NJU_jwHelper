@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0140)http://jwas3.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=discussRenewCourseList&campus=%E4%BB%99%E6%9E%97%E6%A0%A1%E5%8C%BA -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>南京大学教务系统</title>
+    <!--<base href="http://jwas3.nju.edu.cn:8080/jiaowu/">--><base href=".">
+    
+	<link href="./南京大学教务系哭就看见_files/inner.css" rel="stylesheet" type="text/css">  
+  <style type="text/css"></style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+  <!--[if lte IE 6.0000]>
+  	<script language="javascript" src="js/pngfix.js"></script>
+  <![endif]--> 
+  <body>
+ 
+	<div id="Header">
+		
+
+
+
+
+ 
+<div id="Logo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/index.do#"><img src="./南京大学教务系哭就看见_files/Logo_Student.jpg" border="0"></a></div>
+<div id="TopLink"><img src="./南京大学教务系哭就看见_files/Icon_Help.gif"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/index.do#">帮助</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="./南京大学教务系哭就看见_files/Icon_Exit.gif"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/exit.do?type=student">退出</a></div>
+<div id="UserInfo">欢迎您：高阳&nbsp;&nbsp;&nbsp;&nbsp;当前身份：学生</div>
+		
+<script type="text/javascript" language="javascript" src="./南京大学教务系哭就看见_files/prototype.js"></script>
+<div id="Nav">
+  <ul>
+    <li id="homepage"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/index.do">首  页</a></li>
+    <li id="studentinfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/studentinfo/index.do">个人信息</a></li>
+    <li id="teachinginfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/teachinginfo/index.do">教学信息</a></li>
+    <li id="teachinginfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/elective/index.do">学期选课</a></li>
+    <li id="teachinginfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/signup/index.do">报名系统</a></li>
+    <li id="studentinfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/dissertation/index.do">论文信息</a></li>
+    <li id="studentinfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/evalcourse/list.do">课程评估</a></li>
+    <li id="studentinfo"><a href="http://jwas3.nju.edu.cn:8080/jiaowu/student/exchange/index.do">校际交换</a></li>    	
+  </ul>
+</div>
+	</div>
+	
+
+
+
+
+<link href="./南京大学教务系哭就看见_files/publicCourse.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+<!--
+	window.onload=function(){		
+		initSelectedList();
+	}
+	
+	function initSelectedList() {
+		
+	}
+	
+	function initList(campus) {
+		window.location.href="http://jwas3.nju.edu.cn:8080/jiaowu/"+"student/elective/courseList.do?method=discussRenewCourseList&campus=" + campus;
+	}
+	
+	function campusChange() {
+		var g_campus = document.getElementById('campusList').options[document.getElementById('campusList').selectedIndex].value;
+		initList(g_campus);
+	}
+	
+	function refreshCourseList() {
+		var g_campus = document.getElementById('campusList').options[document.getElementById('campusList').selectedIndex].value;
+		initList(g_campus);
+	}
+	
+	function onSubmitSelect() {
+		var g_campus = document.getElementById('campusList').options[document.getElementById('campusList').selectedIndex].value;
+		var rd = document.getElementsByName("selectedRadio");
+		var classId = 0;
+		for(var i=0;i<rd.length;i++) {
+			if(rd[i].checked) {
+				classId = rd[i].value;
+				break;
+			}
+		}
+		if(classId == 0)
+			alert("请选择课程！");
+		else
+			window.location.href="http://jwas3.nju.edu.cn:8080/jiaowu/"+"student/elective/courseList.do?method=submitDiscussRenew&classId=" + classId + "&campus=" + g_campus;
+	}
+	function showCourseDetailInfo(classId, courseNumber){
+		window.open("http://jwas3.nju.edu.cn:8080/jiaowu/student/elective/courseList.do?method=getCourseInfoM&courseNumber="+courseNumber+"&classid="+classId);
+	}
+//-->
+</script>
+
+
+<div style="padding-top:10px;padding-left: 40px;">
+	待选列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校区：
+	<select style="vertical-align:middle;" id="campusList" name="campusList" onchange="javascript:campusChange()" selected="仙林校区">
+		<option value="">请选择校区</option>
+		<option value="仙林校区" selected="selected">仙林校区</option>
+		<option value="鼓楼校区">鼓楼校区</option>
+	</select>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:refreshCourseList()">刷新</a>
+</div>
+<div style="padding-top:10px;padding-left: 10px;" align="center">
+	<table id="tbCourseList" bordercolor="#777777" border="1" style="border-color:#777777;border-collapse:collapse">
+		<thead>
+		<tr align="center">
+			<td align="left">课程号</td>
+			<td align="left">原编号</td>
+			<td align="left">课程名</td>
+			<td nowrap="">学分</td>
+			<td>上课时间</td>
+			<td nowrap="">教师</td>
+			<td nowrap="" width="30">限额</td>
+			<td nowrap="" width="30">已选</td>
+			<td nowrap="" width="100">备注</td>
+			<td nowrap="" width="50">选择</td>
+		</tr>
+		</thead>
+		
+		
+			<tbody><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63445,'00341440')"><u>00341440</u></a></td><td>003440</td><td valign="middle">科学世界观</td><td align="center" valign="middle">3</td><td valign="middle">周一 第7-8节 &nbsp;2-16周 </td><td valign="middle">柏益尧, 左玉辉, 孙平</td><td align="center" valign="middle">180</td><td align="center" valign="middle">179</td><td valign="middle"></td><td align="center" valign="middle"><input type="radio" name="selectedRadio" value="63445"></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63464,'00350040')"><u>00350040</u></a></td><td>004504</td><td valign="middle">社会心理学：理论与现实</td><td align="center" valign="middle">3</td><td valign="middle">周一 第7-8节 &nbsp;2-16周 </td><td valign="middle">朱虹, 周晓虹</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63584,'37000340')"><u>37000340</u></a></td><td>370340</td><td valign="middle">中外声乐精品赏析</td><td align="center" valign="middle">2</td><td valign="middle">周一 第7-8节 &nbsp;2-16周 </td><td valign="middle">陈晓艳</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63451,'00321570')"><u>00321570</u></a></td><td>003570</td><td valign="middle">权力与文化：全球视野下的美国和东亚</td><td align="center" valign="middle">3</td><td valign="middle">周一 第9-11节 &nbsp;2-16周 </td><td valign="middle">尹晓煌</td><td align="center" valign="middle">100</td><td align="center" valign="middle">100</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63462,'00330090')"><u>00330090</u></a></td><td>无</td><td valign="middle">道德与人生</td><td align="center" valign="middle">2</td><td valign="middle">周一 第9-10节 &nbsp;2-16周 </td><td valign="middle">张晓东</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63467,'00340070')"><u>00340070</u></a></td><td>004407</td><td valign="middle">人类活动与自然过程</td><td align="center" valign="middle">2</td><td valign="middle">周一 第9-11节 &nbsp;2-11周 </td><td valign="middle">杨达源, 张永战</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63463,'00350030')"><u>00350030</u></a></td><td>004503</td><td valign="middle">中国人与中国社会</td><td align="center" valign="middle">2</td><td valign="middle">周一 第9-10节 &nbsp;2-16周 </td><td valign="middle">翟学伟</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63475,'00360130')"><u>00360130</u></a></td><td>004613</td><td valign="middle">西方舞蹈与文化</td><td align="center" valign="middle">2</td><td valign="middle">周一 第9-10节 &nbsp;2-16周 </td><td valign="middle">汪以平</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63478,'00360180')"><u>00360180</u></a></td><td>004618</td><td valign="middle">音乐艺术与审美</td><td align="center" valign="middle">3</td><td valign="middle">周一 第9-11节 &nbsp;2-16周 </td><td valign="middle">张静波</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63450,'00361500')"><u>00361500</u></a></td><td>003500</td><td valign="middle">走近电影大师</td><td align="center" valign="middle">3</td><td valign="middle">周一 第9-11节 &nbsp;2-16周 </td><td valign="middle">周安华</td><td align="center" valign="middle">100</td><td align="center" valign="middle">100</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63580,'37000180')"><u>37000180</u></a></td><td>370180</td><td valign="middle">西方音乐通论</td><td align="center" valign="middle">2</td><td valign="middle">周一 第9-10节 &nbsp;2-16周 </td><td valign="middle">吕晓一</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63600,'37000520')"><u>37000520</u></a></td><td>370520</td><td valign="middle">交响音乐欣赏</td><td align="center" valign="middle">2</td><td valign="middle">周一 第9-10节 &nbsp;2-16周 </td><td valign="middle">钱君</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63457,'00320110')"><u>00320110</u></a></td><td>004211</td><td valign="middle">西方人文主义演进的历史及其反思</td><td align="center" valign="middle">2</td><td valign="middle">周二 第7-8节 &nbsp;2-16周 </td><td valign="middle">于文杰</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63460,'00330070')"><u>00330070</u></a></td><td>004307</td><td valign="middle">西方文化核心价值观的形成和传播</td><td align="center" valign="middle">2</td><td valign="middle">周二 第7-8节 &nbsp;2-16周 </td><td valign="middle">王雄</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63446,'00341440')"><u>00341440</u></a></td><td>003440</td><td valign="middle">科学世界观</td><td align="center" valign="middle">3</td><td valign="middle">周二 第7-8节 &nbsp;2-16周 </td><td valign="middle">柏益尧, 左玉辉, 孙平</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63477,'00360150')"><u>00360150</u></a></td><td>004615</td><td valign="middle">视觉文化与摄影艺术</td><td align="center" valign="middle">2</td><td valign="middle">周二 第7-8节 &nbsp;2-16周 </td><td valign="middle">谢白</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63458,'00330020')"><u>00330020</u></a></td><td>004302</td><td valign="middle">人生在“世”：人与世界关系的哲学思考</td><td align="center" valign="middle">2</td><td valign="middle">周二 第9-10节 &nbsp;2-16周 </td><td valign="middle">胡大平, 唐正东, 张亮, 张异宾</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63465,'00350070')"><u>00350070</u></a></td><td>无</td><td valign="middle">个人成长与社会环境研究</td><td align="center" valign="middle">2</td><td valign="middle">周二 第9-11节 &nbsp;2-4周 8-14周 </td><td valign="middle">彭华民, 刘柳, 徐愫</td><td align="center" valign="middle">190</td><td align="center" valign="middle">190</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63474,'00360090')"><u>00360090</u></a></td><td>004609</td><td valign="middle">中国书画鉴赏</td><td align="center" valign="middle">2</td><td valign="middle">周二 第9-10节 &nbsp;2-16周 </td><td valign="middle">黄正明</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63469,'00370030')"><u>00370030</u></a></td><td>无</td><td valign="middle">社会记忆的建构、传承与保护</td><td align="center" valign="middle">2</td><td valign="middle">周二 第9-11节 &nbsp;2-16周 </td><td valign="middle">吴建华</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63597,'37000510')"><u>37000510</u></a></td><td>370510</td><td valign="middle">现代音乐的历史与流派</td><td align="center" valign="middle">2</td><td valign="middle">周二 第9-10节 &nbsp;2-16周 </td><td valign="middle">钱君</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63456,'00320080')"><u>00320080</u></a></td><td>004208</td><td valign="middle">国际体系的演变</td><td align="center" valign="middle">2</td><td valign="middle">周三 第7-8节 &nbsp;2-16周 </td><td valign="middle">计秋枫, 洪邮生</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63447,'00341440')"><u>00341440</u></a></td><td>003440</td><td valign="middle">科学世界观</td><td align="center" valign="middle">3</td><td valign="middle">周三 第7-8节 &nbsp;2-16周 </td><td valign="middle">柏益尧, 左玉辉, 孙平</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63476,'00360140')"><u>00360140</u></a></td><td>004614</td><td valign="middle">艺术社会学</td><td align="center" valign="middle">2</td><td valign="middle">周三 第7-8节 &nbsp;2-16周 </td><td valign="middle">王咏</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63756,'37000240')"><u>37000240</u></a></td><td>370240</td><td valign="middle">演示物理</td><td align="center" valign="middle">2</td><td valign="middle">周三 第7-8节 &nbsp;2-16周 </td><td valign="middle">高惠滨</td><td align="center" valign="middle">80</td><td align="center" valign="middle">80</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63455,'00310090')"><u>00310090</u></a></td><td>004109</td><td valign="middle">中国早期文明：商周至两汉</td><td align="center" valign="middle">3</td><td valign="middle">周三 第9-11节 &nbsp;5-16周 </td><td valign="middle">颜世安</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63480,'00340080')"><u>00340080</u></a></td><td>无</td><td valign="middle">高分子材料与社会发展</td><td align="center" valign="middle">2</td><td valign="middle">周三 第9-10节 &nbsp;2-16周 </td><td valign="middle">贾叙东, 袭锴</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63466,'00350100')"><u>00350100</u></a></td><td>004510</td><td valign="middle">全球化进程中的反全球化</td><td align="center" valign="middle">2</td><td valign="middle">周三 第9-10节 &nbsp;2-16周 </td><td valign="middle">刘金源</td><td align="center" valign="middle">280</td><td align="center" valign="middle">280</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63449,'00361480')"><u>00361480</u></a></td><td>003480</td><td valign="middle">当代西方人文精神概论</td><td align="center" valign="middle">3</td><td valign="middle">周三 第9-11节 &nbsp;2-16周 </td><td valign="middle">但汉松, 徐蕾, 杨金才</td><td align="center" valign="middle">100</td><td align="center" valign="middle">100</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63470,'00370040')"><u>00370040</u></a></td><td>004704</td><td valign="middle">合作行为与社会发展</td><td align="center" valign="middle">2</td><td valign="middle">周三 第9-10节 &nbsp;2-16周 </td><td valign="middle">张康之</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63557,'37000140')"><u>37000140</u></a></td><td>370140</td><td valign="middle">联合国安全机制解读</td><td align="center" valign="middle">2</td><td valign="middle">周三 第9-10节 &nbsp;2-16周 </td><td valign="middle">郑先武</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63452,'00310030')"><u>00310030</u></a></td><td>004103</td><td valign="middle">中国近代政治与外交</td><td align="center" valign="middle">2</td><td valign="middle">周四 第7-8节 &nbsp;2-16周 </td><td valign="middle">申晓云</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63448,'00341440')"><u>00341440</u></a></td><td>003440</td><td valign="middle">科学世界观</td><td align="center" valign="middle">3</td><td valign="middle">周四 第7-8节 &nbsp;2-16周 </td><td valign="middle">柏益尧, 左玉辉, 孙平</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63623,'00360010')"><u>00360010</u></a></td><td>004601</td><td valign="middle">山水地质学与中国绘画</td><td align="center" valign="middle">2</td><td valign="middle">周四 第7-8节 &nbsp;2-16周 </td><td valign="middle">王孝磊, 康育义</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63468,'00370010')"><u>00370010</u></a></td><td>004701</td><td valign="middle">大学生心理健康</td><td align="center" valign="middle">2</td><td valign="middle">周四 第7-8节 &nbsp;2-16周 </td><td valign="middle">桑志芹</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63453,'00310060')"><u>00310060</u></a></td><td>004106</td><td valign="middle">二十世纪的中国民族与边疆</td><td align="center" valign="middle">2</td><td valign="middle">周四 第9-10节 &nbsp;2-16周 </td><td valign="middle">陈谦平</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63454,'00310080')"><u>00310080</u></a></td><td>004108</td><td valign="middle">二十世纪中国思想文化的历史演进</td><td align="center" valign="middle">2</td><td valign="middle">周四 第9-10节 &nbsp;2-16周 </td><td valign="middle">申晓云</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63459,'00330030')"><u>00330030</u></a></td><td>004303</td><td valign="middle">当代社会科学视域中的马克思主义哲学</td><td align="center" valign="middle">2</td><td valign="middle">周四 第9-10节 &nbsp;2-16周 </td><td valign="middle">孙乐强, 周嘉昕, 张亮</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63461,'00330080')"><u>00330080</u></a></td><td>004308</td><td valign="middle">逻辑与科学思维方法</td><td align="center" valign="middle">3</td><td valign="middle">周四 第9-11节 &nbsp;2-16周 </td><td valign="middle">顿新国, 张建军</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63471,'00360020')"><u>00360020</u></a></td><td>004602</td><td valign="middle">人生、情感与表达</td><td align="center" valign="middle">2</td><td valign="middle">周四 第9-10节 &nbsp;2-16周 </td><td valign="middle">吴正岚, 童强, 童岭, 苗怀明</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63473,'00360050')"><u>00360050</u></a></td><td>004605</td><td valign="middle">中国现代作家与地域文化</td><td align="center" valign="middle">3</td><td valign="middle">周四 第9-11节 &nbsp;2-16周 </td><td valign="middle">倪婷婷</td><td align="center" valign="middle">180</td><td align="center" valign="middle">180</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63472,'00360030')"><u>00360030</u></a></td><td>004603</td><td valign="middle">美与人生</td><td align="center" valign="middle">2</td><td valign="middle">周五 第7-8节 &nbsp;2-16周 </td><td valign="middle">方蔚林</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_01"><td><a href="javascript:showCourseDetailInfo(63479,'00330120')"><u>00330120</u></a></td><td>无</td><td valign="middle">文化创意进阶</td><td align="center" valign="middle">2</td><td valign="middle">周五 第9-10节 &nbsp;2-16周 </td><td valign="middle">祁林</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr><tr class="TABLE_TR_02"><td><a href="javascript:showCourseDetailInfo(63648,'00360160')"><u>00360160</u></a></td><td>003610</td><td valign="middle">相看东西方——艺术的多元视角</td><td align="center" valign="middle">3</td><td valign="middle">周五 第9-11节 &nbsp;3-15周 </td><td valign="middle">方小壮, 尚莲霞, 陆庆龙, 聂危谷</td><td align="center" valign="middle">200</td><td align="center" valign="middle">200</td><td valign="middle"></td><td></td></tr>
+		
+	</tbody></table>
+	<p style="color:#0000FF;">
+		补选说明：<br>
+		1、补选采用直选式，提交成功后就表示选中该课程。<br>
+	</p>
+	<br>
+	<input type="button" value="提 交" onclick="javascript: onSubmitSelect()">
+</div>
+
+  
+
+
+
+</body></html>
