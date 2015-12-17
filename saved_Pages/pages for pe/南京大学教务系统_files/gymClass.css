@@ -1,0 +1,13 @@
+@import url("common.css");
+
+#courseList{
+	width:600px;
+}
+
+#tbCourseList tbody{
+	cursor: default;
+}
+
+#operation{	
+	width:80px;
+}
